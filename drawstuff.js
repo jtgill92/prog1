@@ -343,6 +343,30 @@ function drawInputTrainglesUsingPaths(context) {
     } // end if triangle files found
 } // end draw input triangles
 
+//draw unlit triangles using raycasting
+function rayCasting(context) {
+    var inputTriangles = getInputTriangles();
+    var w = context.canvas.width;
+    var h = context.canvas.height;
+    var imagedata = context.createImageData(w,h);
+    
+    //for each screen pixel
+    for(y = 0; y < h; y++) {
+        for(x = 0; x < w; x++) {
+            //Find the ray from the eye through the pixel
+            
+            //for each object in the scene
+            {
+                //If the ray intersects the object and is closest yet
+                {
+                    //record intersection and object
+                }
+            }
+            
+            //find the color for closest intersection
+        }
+    }
+}
 
 /* main -- here is where execution begins after window load */
 
