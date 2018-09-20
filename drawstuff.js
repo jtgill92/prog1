@@ -479,7 +479,7 @@ function rayCasting(context) {
     for(y = 0; y < h; y++) {
         for(x = 0; x < w; x++) {
             //Find the pixel coordinates
-            p = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
+            var p = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
             
             //Find the ray from the eye through the pixel
             
