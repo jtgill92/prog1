@@ -471,9 +471,16 @@ function rayCasting(context) {
     var h = context.canvas.height;
     var imagedata = context.createImageData(w,h);
     
+    var e = new Vector(0.5, 0.5, -0.5); // eye position
+    var viewUp = new Vector(0, 1, 0);
+    var lookAt = new Vector(0, 0, 1);
+    
     //for each screen pixel
     for(y = 0; y < h; y++) {
         for(x = 0; x < w; x++) {
+            //Find the pixel coordinates
+            p = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
+            
             //Find the ray from the eye through the pixel
             
             //for each object in the scene
