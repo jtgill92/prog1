@@ -489,20 +489,46 @@ function rayCasting(context) {
     var h = context.canvas.height;
     var imagedata = context.createImageData(w,h);
     
-    var e = new Vector(0.5, 0.5, -0.5); // eye position
+    var E = new Vector(0.5, 0.5, -0.5); // eye position
     var viewUp = new Vector(0, 1, 0);
     var lookAt = new Vector(0, 0, 1);
     
     //for each screen pixel
     for(y = 0; y < h; y++) {
         for(x = 0; x < w; x++) {
+            //Store closest intersection depth
+            var closest = 561;
+            
+            //Store intersection location
+            var S = new Vector(Nan,NaN,NaN);
+            
             //Find the pixel coordinates
-            var p = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
+            var P = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
             
             //Find the ray from the eye through the pixel
+            var D = Vector.subtract(P,E);
             
             //for each object in the scene
             {
+                //boolean indicating intersection
+                var intersection = false;
+                
+                //Find the surface normal N
+                var BA = Vector.subtract(A,B);
+                var CA = Vector.subtract(A,C);
+                var N = Vector.cross(BA,CA);
+                
+                //Find the triangle plane constant d
+                var d = Vector.dot(N,A);
+                
+                //Find t
+                var NdotD = Vector.dot(N,D);
+                if(NdotD == 0) { // no collision
+                    break;
+                }
+                var NdotE = Vector.dot(N,E);
+                t = (d - NdotE)/NdotD;
+                
                 //If the ray intersects the object and is closest yet
                 {
                     //record intersection and object
