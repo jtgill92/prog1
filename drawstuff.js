@@ -500,7 +500,7 @@ function rayCasting(context) {
             var closest = 561;
             
             //Store intersection location
-            var S = new Vector(Nan,NaN,NaN);
+            var I = new Vector(NaN,NaN,NaN);
             
             //Find the pixel coordinates
             var P = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
@@ -529,8 +529,16 @@ function rayCasting(context) {
                 var NdotE = Vector.dot(N,E);
                 t = (d - NdotE)/NdotD;
                 
+                if(t < 1) { // behind screen
+                    break;
+                }
+                
+                //check if point inside triangle
+                
                 //If the ray intersects the object and is closest yet
-                {
+                if(intersection && t < closest){
+                    closest = t;
+                    
                     //record intersection and object
                 }
             }
