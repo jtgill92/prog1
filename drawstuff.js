@@ -535,7 +535,7 @@ function rayCasting(context) {
                         var vertex1 = inputTriangles[f].triangles[t][0];
         		        var vertex2 = inputTriangles[f].triangles[t][1];
         		        var vertex3 = inputTriangles[f].triangles[t][2];
-
+                        
         		        var A = inputTriangles[f].vertices[vertex1];
         		        var B = inputTriangles[f].vertices[vertex2];
         		        var C = inputTriangles[f].vertices[vertex3];
