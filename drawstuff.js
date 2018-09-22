@@ -528,11 +528,11 @@ function rayCasting(context) {
 
                 //Find the ray from the eye through the pixel
                 var D = Vector.subtract(P,E);
-                /*
+                
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
-                for (var f=0; f<n; f++) {
-        	    var tn = inputTriangles[f].triangles.length;
+                for (var f=0; f<n; f++) {/*
+        	        var tn = inputTriangles[f].triangles.length;
                 
                     // Loop over the triangles, draw each in 2d
                     for(var t=0; t<tn; t++) {
@@ -590,8 +590,9 @@ function rayCasting(context) {
                             255); // triangle diffuse color
                         }
                     } // end for triangles
+                    */
                 } // end for files
-                */
+                
                 //shade pixel
                 drawPixel(imagedata,x,y,c);
             } 
