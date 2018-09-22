@@ -569,7 +569,7 @@ function rayCasting(context) {
                         if(t < 1) { // behind screen
                             continue;
                         }
-                        /*
+                        
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
                         if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
@@ -580,7 +580,7 @@ function rayCasting(context) {
                         if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
                             intersection = true;
                         }
-
+                        /*
                         //If the ray intersects the object and is closest yet
                         if(intersection && t < closest) {                    
                             //record intersection and object
