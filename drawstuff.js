@@ -490,10 +490,10 @@ function side(N,I,V1,V2) {
     var val = Vector.dot(N,Vector.cross(V1ToI,V1toV2)); // N * ([I - V1] x [V2 - V1])
     
     if(val > 0) {
-        return true;
+        return(true);
     }
     else {
-        return false;
+        return(false);
     }
 }
 
