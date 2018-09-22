@@ -490,20 +490,21 @@ function side(N,I,V1,V2) {
     var val = Vector.dot(N,Vector.cross(V1ToI,V1toV2)); // N * ([I - V1] x [V2 - V1])
     
     if(val > 0) {
-        return 1;
+        return true;
     }
     else {
-        return -1;
+        return false;
     }
 }
 
 //draw unlit triangles using raycasting
 function rayCasting(context) {
+    var inputTriangles = getInputTriangles();
+    var w = context.canvas.width;
+    var h = context.canvas.height;
+    var imagedata = context.createImageData(w,h);
+    
     if (inputTriangles != String.null) { 
-        var inputTriangles = getInputTriangles();
-        var w = context.canvas.width;
-        var h = context.canvas.height;
-        var imagedata = context.createImageData(w,h);
         var n = inputTriangles.length; // the number of input files
 
         var E = new Vector(0.5, 0.5, -0.5); // eye position
