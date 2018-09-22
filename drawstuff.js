@@ -533,12 +533,12 @@ function rayCasting(context) {
                     // Loop over the triangles, draw each in 2d
                     for(var t=0; t<tn; t++) {
                         var vertex1 = inputTriangles[f].triangles[t][0];
-        		        var vertex2 = inputTriangles[f].triangles[t][1];
-        		        var vertex3 = inputTriangles[f].triangles[t][2];
+                        var vertex2 = inputTriangles[f].triangles[t][1];
+                        var vertex3 = inputTriangles[f].triangles[t][2];
                         
-        		        var A = inputTriangles[f].vertices[vertex1];
-        		        var B = inputTriangles[f].vertices[vertex2];
-        		        var C = inputTriangles[f].vertices[vertex3];
+                        var A = inputTriangles[f].vertices[vertex1];
+                        var B = inputTriangles[f].vertices[vertex2];
+                        var C = inputTriangles[f].vertices[vertex3];
                         
                         // init the triangle color
                         var c = new Color(0,0,0,0);
@@ -606,6 +606,8 @@ function main() {
     // Get the canvas and context
     var canvas = document.getElementById("viewport"); 
     var context = canvas.getContext("2d");
+    
+    rayCasting(context);
  
     // Create the image
     //drawRandPixels(context);
@@ -617,7 +619,7 @@ function main() {
     //drawInputEllipsoidsUsingArcs(context);
       // shows how to read input file, but not how to draw pixels
     
-    drawRandPixelsInInputTriangles(context);
+    //drawRandPixelsInInputTriangles(context);
     // shows how to draw pixels and read input file
     
     //drawInputTrainglesUsingPaths(context);
