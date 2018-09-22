@@ -516,7 +516,7 @@ function rayCasting(context) {
             for(var x = 0; x < w; x++) {
                 // init the triangle color
                 var c = new Color(0,0,255,255);
-                
+                /*
                 //Store closest intersection depth
                 var closest = 561; //default val
 
@@ -568,9 +568,9 @@ function rayCasting(context) {
 
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
-                        /*if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
+                        if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
                             continue;
-                        }*/
+                        }
 
                         //check if point inside triangle
                         if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
@@ -591,7 +591,7 @@ function rayCasting(context) {
                         }
                     } // end for triangles
                 } // end for files
-                
+                */
                 //shade pixel
                 drawPixel(imagedata,x,y,c);
             } 
