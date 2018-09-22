@@ -518,7 +518,7 @@ function rayCasting(context) {
                 var closest = 561; //default val
 
                 //Store intersection location
-                var I = new Vector(NaN,NaN,NaN);
+                //var I = new Vector(NaN,NaN,NaN);
 
                 //Find the pixel coordinates
                 var P = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
@@ -562,15 +562,15 @@ function rayCasting(context) {
                         }
                         var NDotE = Vector.dot(N,E);
                         t = (d - NDotE)/NDotD;
-                        if(t < 1) { // behind screen
+                        /*if(t < 1) { // behind screen
                             continue;
-                        }
+                        }*/
 
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
-                        if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
+                        /*if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
                             continue;
-                        }
+                        }*/
 
                         //check if point inside triangle
                         if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
