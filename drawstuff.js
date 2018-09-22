@@ -557,18 +557,18 @@ function rayCasting(context) {
                         //Find t
                         var NDotD = Vector.dot(N,D);
                         if(NDotD == 0) { // no collision
-                            break;
+                            continue;
                         }
                         var NDotE = Vector.dot(N,E);
                         t = (d - NDotE)/NDotD;
                         if(t < 1) { // behind screen
-                            break;
+                            continue;
                         }
 
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
                         if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
-                            break;
+                            continue;
                         }
 
                         //check if point inside triangle
@@ -588,13 +588,13 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
                         }
-                    }
-                }
+                    } // end for triangles
+                } // end for files
 
                 //shade pixel
                 drawPixel(imagedata,x,y,c);
-            } // end for triangles
-        } // end for files
+            } 
+        } // end for pixels
         context.putImageData(imagedata, 0, 0);
     } // end if triangle file found
 } // end rayCasting
