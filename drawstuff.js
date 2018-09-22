@@ -543,7 +543,7 @@ function rayCasting(context) {
                         var A = inputTriangles[f].vertices[vertex1];
                         var B = inputTriangles[f].vertices[vertex2];
                         var C = inputTriangles[f].vertices[vertex3];
-                        /*
+                        
                         //boolean indicating intersection
                         var intersection = false;
 
@@ -551,10 +551,10 @@ function rayCasting(context) {
                         var BA = Vector.subtract(A,B);
                         var CA = Vector.subtract(A,C);
                         var N = Vector.cross(BA,CA);
-
+                        
                         //Find the triangle plane constant d
                         var d = Vector.dot(N,A);
-
+                        /*
                         //Find t
                         var NDotD = Vector.dot(N,D);
                         if(NDotD == 0) { // no collision
