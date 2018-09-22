@@ -553,7 +553,7 @@ function rayCasting(context) {
 
                         //Find the surface normal N
                         var BA = Vector.subtract(A,B);
-                        var CA = Vector.subtract(A,C);/*
+                        var CA = Vector.subtract(A,C);
                         var N = Vector.cross(BA,CA);
                         
                         //Find the triangle plane constant d
@@ -569,7 +569,7 @@ function rayCasting(context) {
                         if(t < 1) { // behind screen
                             continue;
                         }
-
+                        /*
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
                         if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
