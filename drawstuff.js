@@ -533,7 +533,7 @@ function rayCasting(context) {
                 // Loop over the triangles, draw unlit pixels in each
                 for (var f=0; f<n; f++) {
                     var tn = inputTriangles[f].triangles.length;
-                    /*
+                    
                     // Loop over the triangles, draw each in 2d
                     for(var t=0; t<tn; t++) {
                         var vertex1 = inputTriangles[f].triangles[t][0];
@@ -543,7 +543,7 @@ function rayCasting(context) {
                         var A = inputTriangles[f].vertices[vertex1];
                         var B = inputTriangles[f].vertices[vertex2];
                         var C = inputTriangles[f].vertices[vertex3];
-
+                        /*
                         //boolean indicating intersection
                         var intersection = false;
 
@@ -589,8 +589,8 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
                         }
+                        */
                     } // end for triangles
-                    */
                 } // end for files
                 
                 //shade pixel
