@@ -525,6 +525,8 @@ function rayCasting(context) {
             
             //for each object in the scene
             {
+                var c = new Color(0,0,0,0); // init the triangle color
+                
                 //boolean indicating intersection
                 var intersection = false;
                 
@@ -564,10 +566,16 @@ function rayCasting(context) {
                     closest = t;
                     
                     //find the color for closest intersection
+                    c.change(
+            		inputTriangles[f].material.diffuse[0]*255,
+                	inputTriangles[f].material.diffuse[1]*255,
+                	inputTriangles[f].material.diffuse[2]*255,
+                	255); // triangle diffuse color
                 }
             }
             
             //shade pixel
+            drawPixel(imagedata,x,y,c);
         }
     }
 }
