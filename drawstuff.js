@@ -482,6 +482,21 @@ class Vector {
     
 } // end Vector class
 
+//helper function to aid with ray-triangle intersection tests
+function side(N,I,V1,V2) {
+    var V1ToI = Vector.subtract(I,V1); // I - V1
+    var V1ToV2 = Vector.subtract(V2,V1); // V2 - V1
+    
+    var val = Vector.dot(N,Vector.cross(V1ToI,V1toV2)); // N * ([I - V1] x [V2 - V1])
+    
+    if(val > 0) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+
 //draw unlit triangles using raycasting
 function rayCasting(context) {
     var inputTriangles = getInputTriangles();
@@ -497,7 +512,7 @@ function rayCasting(context) {
     for(y = 0; y < h; y++) {
         for(x = 0; x < w; x++) {
             //Store closest intersection depth
-            var closest = 561;
+            var closest = 561; //default val
             
             //Store intersection location
             var I = new Vector(NaN,NaN,NaN);
@@ -522,28 +537,37 @@ function rayCasting(context) {
                 var d = Vector.dot(N,A);
                 
                 //Find t
-                var NdotD = Vector.dot(N,D);
-                if(NdotD == 0) { // no collision
+                var NDotD = Vector.dot(N,D);
+                if(NDotD == 0) { // no collision
                     break;
                 }
-                var NdotE = Vector.dot(N,E);
-                t = (d - NdotE)/NdotD;
-                
+                var NDotE = Vector.dot(N,E);
+                t = (d - NDotE)/NDotD;
                 if(t < 1) { // behind screen
                     break;
                 }
                 
+                //find the intersection point I
+                var I = Vector.add(E,Vector.scale(t,D));
+                if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
+                    break;
+                }
+                
                 //check if point inside triangle
+                if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
+                    intersection = true;
+                }
                 
                 //If the ray intersects the object and is closest yet
-                if(intersection && t < closest){
+                if(intersection && t < closest){                    
+                    //record intersection and object
                     closest = t;
                     
-                    //record intersection and object
+                    //find the color for closest intersection
                 }
             }
             
-            //find the color for closest intersection
+            //shade pixel
         }
     }
 }
