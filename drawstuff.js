@@ -516,7 +516,7 @@ function rayCasting(context) {
             for(var x = 0; x < w; x++) {
                 // init the triangle color
                 var c = new Color(0,0,255,255);
-                /*
+                
                 //Store closest intersection depth
                 var closest = 561; //default val
 
@@ -528,7 +528,7 @@ function rayCasting(context) {
 
                 //Find the ray from the eye through the pixel
                 var D = Vector.subtract(P,E);
-                
+                /*
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
                 for (var f=0; f<n; f++) {
