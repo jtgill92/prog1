@@ -528,7 +528,7 @@ function rayCasting(context) {
 
                 //Find the ray from the eye through the pixel
                 var D = Vector.subtract(P,E);
-                /*
+                
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
                 for (var f=0; f<n; f++) {
@@ -562,9 +562,9 @@ function rayCasting(context) {
                         }
                         var NDotE = Vector.dot(N,E);
                         t = (d - NDotE)/NDotD;
-                        /*if(t < 1) { // behind screen
+                        if(t < 1) { // behind screen
                             continue;
-                        }*/
+                        }
 
                         //find the intersection point I
                         var I = Vector.add(E,Vector.scale(t,D));
@@ -591,7 +591,7 @@ function rayCasting(context) {
                         }
                     } // end for triangles
                 } // end for files
-                */
+                
                 //shade pixel
                 drawPixel(imagedata,x,y,c);
             } 
