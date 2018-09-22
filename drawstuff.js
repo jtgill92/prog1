@@ -549,12 +549,12 @@ function rayCasting(context) {
 
                         //Find the surface normal N
                         var BA = Vector.subtract(A,B);
-                        var CA = Vector.subtract(A,C);
+                        var CA = Vector.subtract(A,C);/*
                         var N = Vector.cross(BA,CA);
                         
                         //Find the triangle plane constant d
                         var d = Vector.dot(N,A);
-                        /*
+                        
                         //Find t
                         var NDotD = Vector.dot(N,D);
                         if(NDotD == 0) { // no collision
