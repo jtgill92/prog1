@@ -531,9 +531,9 @@ function rayCasting(context) {
                 
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
-                for (var f=0; f<n; f++) {/*
-        	        var tn = inputTriangles[f].triangles.length;
-                
+                for (var f=0; f<n; f++) {
+                    var tn = inputTriangles[f].triangles.length;
+                    /*
                     // Loop over the triangles, draw each in 2d
                     for(var t=0; t<tn; t++) {
                         var vertex1 = inputTriangles[f].triangles[t][0];
