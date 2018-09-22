@@ -515,7 +515,7 @@ function rayCasting(context) {
         for(y = 0; y < h; y++) {
             for(x = 0; x < w; x++) {
                 // init the triangle color
-                var c = new Color(0,0,0,0);
+                var c = new Color(0,0,255,255);
                 
                 //Store closest intersection depth
                 var closest = 561; //default val
