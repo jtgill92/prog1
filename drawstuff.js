@@ -608,7 +608,7 @@ function main() {
     var canvas = document.getElementById("viewport"); 
     var context = canvas.getContext("2d");
     
-    //rayCasting(context);
+    rayCasting(context);
  
     // Create the image
     //drawRandPixels(context);
@@ -620,7 +620,7 @@ function main() {
     //drawInputEllipsoidsUsingArcs(context);
       // shows how to read input file, but not how to draw pixels
     
-    drawRandPixelsInInputTriangles(context);
+    //drawRandPixelsInInputTriangles(context);
     // shows how to draw pixels and read input file
     
     //drawInputTrainglesUsingPaths(context);
