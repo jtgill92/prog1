@@ -514,6 +514,9 @@ function rayCasting(context) {
         //for each screen pixel
         for(y = 0; y < h; y++) {
             for(x = 0; x < w; x++) {
+                // init the triangle color
+                var c = new Color(0,0,0,0);
+                
                 //Store closest intersection depth
                 var closest = 561; //default val
 
@@ -525,7 +528,7 @@ function rayCasting(context) {
 
                 //Find the ray from the eye through the pixel
                 var D = Vector.subtract(P,E);
-
+                /*
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
                 for (var f=0; f<n; f++) {
@@ -540,9 +543,6 @@ function rayCasting(context) {
                         var A = inputTriangles[f].vertices[vertex1];
                         var B = inputTriangles[f].vertices[vertex2];
                         var C = inputTriangles[f].vertices[vertex3];
-                        
-                        // init the triangle color
-                        var c = new Color(0,0,0,0);
 
                         //boolean indicating intersection
                         var intersection = false;
@@ -591,7 +591,7 @@ function rayCasting(context) {
                         }
                     } // end for triangles
                 } // end for files
-
+                */
                 //shade pixel
                 drawPixel(imagedata,x,y,c);
             } 
