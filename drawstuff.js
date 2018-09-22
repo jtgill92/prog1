@@ -499,86 +499,105 @@ function side(N,I,V1,V2) {
 
 //draw unlit triangles using raycasting
 function rayCasting(context) {
-    var inputTriangles = getInputTriangles();
-    var w = context.canvas.width;
-    var h = context.canvas.height;
-    var imagedata = context.createImageData(w,h);
+    if (inputTriangles != String.null) { 
+        var inputTriangles = getInputTriangles();
+        var w = context.canvas.width;
+        var h = context.canvas.height;
+        var imagedata = context.createImageData(w,h);
+        var n = inputTriangles.length; // the number of input files
+
+        var E = new Vector(0.5, 0.5, -0.5); // eye position
+        var viewUp = new Vector(0, 1, 0);
+        var lookAt = new Vector(0, 0, 1);
     
-    var E = new Vector(0.5, 0.5, -0.5); // eye position
-    var viewUp = new Vector(0, 1, 0);
-    var lookAt = new Vector(0, 0, 1);
-    
-    //for each screen pixel
-    for(y = 0; y < h; y++) {
-        for(x = 0; x < w; x++) {
-            //Store closest intersection depth
-            var closest = 561; //default val
-            
-            //Store intersection location
-            var I = new Vector(NaN,NaN,NaN);
-            
-            //Find the pixel coordinates
-            var P = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
-            
-            //Find the ray from the eye through the pixel
-            var D = Vector.subtract(P,E);
-            
-            //for each object in the scene
-            {
-                var c = new Color(0,0,0,0); // init the triangle color
+        //for each screen pixel
+        for(y = 0; y < h; y++) {
+            for(x = 0; x < w; x++) {
+                //Store closest intersection depth
+                var closest = 561; //default val
+
+                //Store intersection location
+                var I = new Vector(NaN,NaN,NaN);
+
+                //Find the pixel coordinates
+                var P = new Vector((x + 0.5)/w, (y + 0.5)/h, 0); // pixel coordinates, exploit scene geometry, center of pixel
+
+                //Find the ray from the eye through the pixel
+                var D = Vector.subtract(P,E);
+
+                // For each object in the scene
+                // Loop over the triangles, draw unlit pixels in each
+                for (var f=0; f<n; f++) {
+        	    var tn = inputTriangles[f].triangles.length;
                 
-                //boolean indicating intersection
-                var intersection = false;
-                
-                //Find the surface normal N
-                var BA = Vector.subtract(A,B);
-                var CA = Vector.subtract(A,C);
-                var N = Vector.cross(BA,CA);
-                
-                //Find the triangle plane constant d
-                var d = Vector.dot(N,A);
-                
-                //Find t
-                var NDotD = Vector.dot(N,D);
-                if(NDotD == 0) { // no collision
-                    break;
+                    // Loop over the triangles, draw each in 2d
+                    for(var t=0; t<tn; t++) {
+                        var vertex1 = inputTriangles[f].triangles[t][0];
+        		        var vertex2 = inputTriangles[f].triangles[t][1];
+        		        var vertex3 = inputTriangles[f].triangles[t][2];
+
+        		        var A = inputTriangles[f].vertices[vertex1];
+        		        var B = inputTriangles[f].vertices[vertex2];
+        		        var C = inputTriangles[f].vertices[vertex3];
+                        
+                        // init the triangle color
+                        var c = new Color(0,0,0,0);
+
+                        //boolean indicating intersection
+                        var intersection = false;
+
+                        //Find the surface normal N
+                        var BA = Vector.subtract(A,B);
+                        var CA = Vector.subtract(A,C);
+                        var N = Vector.cross(BA,CA);
+
+                        //Find the triangle plane constant d
+                        var d = Vector.dot(N,A);
+
+                        //Find t
+                        var NDotD = Vector.dot(N,D);
+                        if(NDotD == 0) { // no collision
+                            break;
+                        }
+                        var NDotE = Vector.dot(N,E);
+                        t = (d - NDotE)/NDotD;
+                        if(t < 1) { // behind screen
+                            break;
+                        }
+
+                        //find the intersection point I
+                        var I = Vector.add(E,Vector.scale(t,D));
+                        if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
+                            break;
+                        }
+
+                        //check if point inside triangle
+                        if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
+                            intersection = true;
+                        }
+
+                        //If the ray intersects the object and is closest yet
+                        if(intersection && t < closest) {                    
+                            //record intersection and object
+                            closest = t;
+
+                            //find the color for closest intersection
+                            c.change(
+                            inputTriangles[f].material.diffuse[0]*255,
+                            inputTriangles[f].material.diffuse[1]*255,
+                            inputTriangles[f].material.diffuse[2]*255,
+                            255); // triangle diffuse color
+                        }
+                    }
                 }
-                var NDotE = Vector.dot(N,E);
-                t = (d - NDotE)/NDotD;
-                if(t < 1) { // behind screen
-                    break;
-                }
-                
-                //find the intersection point I
-                var I = Vector.add(E,Vector.scale(t,D));
-                if(I.x < 0 || I.x > 1 || I.y < 0 || I.y > 1 || I.z < 0 || I.z > 1) { // outside view volume
-                    break;
-                }
-                
-                //check if point inside triangle
-                if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
-                    intersection = true;
-                }
-                
-                //If the ray intersects the object and is closest yet
-                if(intersection && t < closest){                    
-                    //record intersection and object
-                    closest = t;
-                    
-                    //find the color for closest intersection
-                    c.change(
-            		inputTriangles[f].material.diffuse[0]*255,
-                	inputTriangles[f].material.diffuse[1]*255,
-                	inputTriangles[f].material.diffuse[2]*255,
-                	255); // triangle diffuse color
-                }
-            }
-            
-            //shade pixel
-            drawPixel(imagedata,x,y,c);
-        }
-    }
-}
+
+                //shade pixel
+                drawPixel(imagedata,x,y,c);
+            } // end for triangles
+        } // end for files
+        context.putImageData(imagedata, 0, 0);
+    } // end if triangle file found
+} // end rayCasting
 
 /* main -- here is where execution begins after window load */
 
