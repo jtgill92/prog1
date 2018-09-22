@@ -540,9 +540,13 @@ function rayCasting(context) {
                         var vertex2 = inputTriangles[f].triangles[t][1];
                         var vertex3 = inputTriangles[f].triangles[t][2];
                         
-                        var A = inputTriangles[f].vertices[vertex1];
-                        var B = inputTriangles[f].vertices[vertex2];
-                        var C = inputTriangles[f].vertices[vertex3];
+                        var vertexPos1 = inputTriangles[f].vertices[vertex1];
+                        var vertexPos2 = inputTriangles[f].vertices[vertex2];
+                        var vertexPos3 = inputTriangles[f].vertices[vertex3];
+                        
+                        var A = new Vector(vertexPos1[0],vertexPos1[1],vertexPos1[2]);
+                        var B = new Vector(vertexPos2[0],vertexPos2[1],vertexPos2[2]);
+                        var C = new Vector(vertexPos3[0],vertexPos3[1],vertexPos3[2]);
                         
                         //boolean indicating intersection
                         var intersection = false;
