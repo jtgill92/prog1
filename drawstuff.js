@@ -309,7 +309,7 @@ function drawInputTrainglesUsingPaths(context) {
         //console.log("number of files: " + n);
 
         // Loop over the input files
-        for (var f=1; f<n; f++) {
+        for (var f=0; f<n; f++) {
         	var tn = inputTriangles[f].triangles.length;
         	//console.log("number of triangles in this files: " + tn);
         	
@@ -531,7 +531,7 @@ function rayCasting(context) {
                 
                 // For each object in the scene
                 // Loop over the triangles, draw unlit pixels in each
-                for (var f=0; f<n; f++) {
+                for (var f=1; f<n; f++) {
                     var tn = inputTriangles[f].triangles.length;
                     
                     // Loop over the triangles, draw each in 2d
