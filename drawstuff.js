@@ -309,7 +309,7 @@ function drawInputTrainglesUsingPaths(context) {
         //console.log("number of files: " + n);
 
         // Loop over the input files
-        for (var f=0; f<n; f++) {
+        for (var f=1; f<n; f++) {
         	var tn = inputTriangles[f].triangles.length;
         	//console.log("number of triangles in this files: " + tn);
         	
