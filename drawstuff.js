@@ -580,7 +580,7 @@ function rayCasting(context) {
                         if(side(N,I,A,B) == side(N,I,B,C) && side(N,I,B,C) == side(N,I,C,A)) {
                             intersection = true;
                         }
-                        /*
+                        
                         //If the ray intersects the object and is closest yet
                         if(intersection && t < closest) {                    
                             //record intersection and object
@@ -593,7 +593,7 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
                         }
-                        */
+                        
                     } // end for triangles
                 } // end for files
                 
