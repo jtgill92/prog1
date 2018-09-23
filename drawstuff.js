@@ -518,7 +518,7 @@ function rayCasting(context) {
                 var c = new Color(0,0,255,255);
                 
                 //Store closest intersection depth
-                var closest = 561; //default val
+                //var closest = 561; //default val
 
                 //Store intersection location
                 //var I = new Vector(NaN,NaN,NaN);
@@ -533,6 +533,9 @@ function rayCasting(context) {
                 // Loop over the triangles, draw unlit pixels in each
                 for (var f=0; f<n; f++) {
                     var tn = inputTriangles[f].triangles.length;
+                    
+                    //Store closest intersection depth
+                    var closest = 561; //default val
                     
                     // Loop over the triangles, draw each in 2d
                     for(var t=0; t<tn; t++) {
