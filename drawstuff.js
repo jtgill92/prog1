@@ -483,7 +483,7 @@ class Vector {
 } // end Vector class
 
 //helper function to aid with ray-triangle intersection tests
-function side(N,I,V1,V2) {
+function side(N,I,V1,V2) {/*
     var V1ToI = Vector.subtract(I,V1); // I - V1
     var V1ToV2 = Vector.subtract(V2,V1); // V2 - V1
     
@@ -494,7 +494,8 @@ function side(N,I,V1,V2) {
     }
     else {
         return(false);
-    }
+    }*/
+    return(true);
 }
 
 //draw unlit triangles using raycasting
