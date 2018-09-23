@@ -483,10 +483,10 @@ class Vector {
 } // end Vector class
 
 //helper function to aid with ray-triangle intersection tests
-function side(N,I,V1,V2) {/*
+function side(N,I,V1,V2) {
     var V1ToI = Vector.subtract(I,V1); // I - V1
     var V1ToV2 = Vector.subtract(V2,V1); // V2 - V1
-    
+    /*
     var val = Vector.dot(N,Vector.cross(V1ToI,V1toV2)); // N * ([I - V1] x [V2 - V1])
     
     if(val > 0) {
