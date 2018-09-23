@@ -535,7 +535,7 @@ function rayCasting(context) {
                     var tn = inputTriangles[f].triangles.length;
                     
                     // Loop over the triangles, draw each in 2d
-                    for(var t=0; t<tn; t++) {
+                    for(var t=1; t<tn; t++) {
                         var vertex1 = inputTriangles[f].triangles[t][0];
                         var vertex2 = inputTriangles[f].triangles[t][1];
                         var vertex3 = inputTriangles[f].triangles[t][2];
