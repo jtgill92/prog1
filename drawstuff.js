@@ -520,8 +520,9 @@ function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
     var L = Vector.subtract(lightPos, I);
     var V = Vector.subtract(E, I);
-    var HDenom = Vector.length(L) + Vector.length(V);
-    var H = Vector.scale(1/HDenom, Vector.add(L, V));
+    //var HDenom = Vector.length(L) + Vector.length(V);
+    //var H = Vector.scale(1/HDenom, Vector.add(L, V));
+    var H = Vector.normalize(Vector.add(L, V));
     
     var NDotL = Math.max(0, Vector.dot(NHat, Vector.normalize(L)));
     var NDotH = Math.max(0, Vector.dot(NHat, H));
