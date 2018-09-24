@@ -487,7 +487,7 @@ class Vector {
             if (!(v instanceof Vector))
                 throw "Vector.length: parameter not a vector";
             else {
-                return(Vector.sqrt(Vector.dot(v,v));
+                return(Vector.sqrt(Vector.dot(v,v)));
             }
         } // end try
         
