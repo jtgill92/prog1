@@ -500,7 +500,7 @@ class Vector {
 } // end Vector class
 
 // helper function to find the max of two parameters a and b
-/*function max(a.b) {
+/*function max(a,b) {
     if(a > b)
         return a;
     else //(a <= b)
@@ -531,8 +531,8 @@ function side(N,I,V1,V2) {
     var HDenom = Vector.length(L) + Vector.length(V);
     var H = Vector.scale(1/HDenom, Vector.add(L, V));
     
-    var NDotL = Vector.dot(NHat, Vector.normalize(L));
-    var NDotH = Vector.dot(NHat, H);
+    var NDotL = Math.max(0, Vector.dot(NHat, Vector.normalize(L)));
+    var NDotH = Math.max(0, Vector.dot(NHat, H));
     
     var RGB = [0, 0, 0];
     
