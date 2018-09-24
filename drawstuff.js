@@ -517,21 +517,24 @@ function side(N,I,V1,V2) {
 // find the color of the pixel using Blinn-Phong shading
 // alters color c passed by reference, return val undefined
 function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
-    var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
-    var L = Vector.subtract(lightPos, I);
-    var V = Vector.subtract(E, I);
-    //var HDenom = Vector.length(L) + Vector.length(V);
+    var NHat = Vector.normalize(N); // N normalized; the direction of N, or "N hat"
+    var L = Vector.subtract(lightPos, I); // vector from intersection point to light source
+    var V = Vector.subtract(E, I); // vector from inersection point to eye location
+    
+    //var HDenom = Vector.length(Vector.add(L,V));
     //var H = Vector.scale(1/HDenom, Vector.add(L, V));
-    var H = Vector.normalize(Vector.add(L, V));
+    
+    var H = Vector.normalize(Vector.add(L, V)); // the vecter (H)alf-way between L and V
     
     var NDotL = Math.max(0, Vector.dot(NHat, Vector.normalize(L)));
     var NDotH = Math.max(0, Vector.dot(NHat, H));
     
     var RGB = [0, 0, 0];
     
-    var n = inputTriangle.material.n;
+    var n = inputTriangle.material.n; // Phong exponent
     
     for(var i = 0; i < 3; i++) {
+        // retrieve surface and light constants
         var Ka = inputTriangle.material.ambient[i];
         var La = lightCol[i];
         
@@ -541,10 +544,10 @@ function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
         var Ks = inputTriangle.material.specular[i];
         var Ls = lightCol[i];
         
-        //RGB[i] = Ka*La + Kd*Ld*NDotL + Ks*Ls*Math.pow(NDotH, n);
+        // Find each rgb color component
         RGB[i] = Ka*La + Kd*Ld*NDotL + Ks*Ls*Math.pow(NDotH, n);
     }
-    
+    // alter pixel color
     c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
 }
 
