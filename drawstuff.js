@@ -516,7 +516,7 @@ function side(N,I,V1,V2) {
 
 // find the color of the pixel using Blinn-Phong shadering
 // alters color c passed by reference
-/*function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
+function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
     var L = Vector.subtract(L, I);
     var V = Vector.subtract(E, I);
@@ -544,7 +544,7 @@ function side(N,I,V1,V2) {
     }
     
     c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
-}*/
+}
 
 // draw unlit triangles using raycasting
 function rayCasting(context) {
