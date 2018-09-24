@@ -562,7 +562,7 @@ function rayCasting(context) {
         //var viewUp = new Vector(0, 1, 0);
         //var lookAt = new Vector(0, 0, 1);
         var lightCol = [1, 1, 1];
-        var lightPos = new Vector(-3, 1, -0.5);
+        var lightPos = new Vector(-1, 1, -0.5); //new Vector(-3, 1, -0.5);
     
         //for each screen pixel
         for(var y = 0; y < h; y++) {
