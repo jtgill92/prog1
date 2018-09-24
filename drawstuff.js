@@ -540,7 +540,8 @@ function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
         var Ks = inputTriangle.material.specular[i];
         var Ls = lightCol[i];
         
-        RGB[i] = Ka*La + Kd*Ld*NDotL + Ks*Ls*Math.pow(NDotH, n);
+        //RGB[i] = Ka*La + Kd*Ld*NDotL + Ks*Ls*Math.pow(NDotH, n);
+        RGB[i] = Kd*Ld;
     }
     
     c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
