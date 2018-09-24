@@ -500,12 +500,12 @@ class Vector {
 } // end Vector class
 
 // helper function to find the max of two parameters a and b
-function max(a.b) {
+/*function max(a.b) {
     if(a > b)
         return a;
     else //(a <= b)
         return b;
-}
+}*/
 
 // helper function to aid with ray-triangle intersection tests
 function side(N,I,V1,V2) {
@@ -524,7 +524,7 @@ function side(N,I,V1,V2) {
 
 // find the color of the pixel using Blinn-Phong shadering
 // alters color c passed by reference
-function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
+/*function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
     var L = Vector.subtract(L, I);
     var V = Vector.subtract(E, I);
@@ -552,7 +552,7 @@ function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     }
     
     c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
-}
+}*/
 
 // draw unlit triangles using raycasting
 function rayCasting(context) {
