@@ -644,7 +644,7 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
                             
-                            //color(inputTriangles[f], lightPos, lightCol, I, E, N, c);
+                            color(inputTriangles[f], lightPos, lightCol, I, E, N, c);
                         }
                         
                     } // end for triangles
