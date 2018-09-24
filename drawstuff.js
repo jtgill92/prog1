@@ -562,7 +562,7 @@ function rayCasting(context) {
         //var viewUp = new Vector(0, 1, 0);
         //var lookAt = new Vector(0, 0, 1);
         var lightCol = [1, 1, 1];
-        var lightPos = new Vector(-1, 1, -0.5); //new Vector(-3, 1, -0.5);
+        var lightPos = new Vector(1, 0, -0.5); //new Vector(-3, 1, -0.5);
     
         //for each screen pixel
         for(var y = 0; y < h; y++) {
@@ -639,13 +639,14 @@ function rayCasting(context) {
                             //record intersection and object
                             closest = t;
 
-                            //find the color for closest intersection
+                            //find the color for closest intersection unlit
                             /*c.change(
                             inputTriangles[f].material.diffuse[0]*255,
                             inputTriangles[f].material.diffuse[1]*255,
                             inputTriangles[f].material.diffuse[2]*255,
-                            255); */// triangle diffuse color
+                            255); */ // triangle diffuse color
                             
+                            //find color for closest intersection using Blinn-Phong
                             color(inputTriangles[f], lightPos, lightCol, I, E, N, c);
                         }
                         
