@@ -508,8 +508,8 @@ function rayCasting(context) {
         var n = inputTriangles.length; // the number of input files
 
         var E = new Vector(0.5, 0.5, -0.5); // eye position
-        var viewUp = new Vector(0, 1, 0);
-        var lookAt = new Vector(0, 0, 1);
+        //var viewUp = new Vector(0, 1, 0);
+        //var lookAt = new Vector(0, 0, 1);
     
         //for each screen pixel
         for(var y = 0; y < h; y++) {
