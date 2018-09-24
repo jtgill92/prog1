@@ -514,8 +514,8 @@ function side(N,I,V1,V2) {
     }
 }
 
-// find the color of the pixel using Blinn-Phong shadering
-// alters color c passed by reference
+// find the color of the pixel using Blinn-Phong shading
+// alters color c passed by reference, return val undefined
 function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
     var L = Vector.subtract(lightPos, I);
@@ -548,7 +548,7 @@ function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
 }
 
-// draw unlit triangles using raycasting
+// draw Blinn-Phong shaded triangles using raycasting
 function rayCasting(context) {
     var inputTriangles = getInputTriangles();
     var w = context.canvas.width;
@@ -562,7 +562,7 @@ function rayCasting(context) {
         //var viewUp = new Vector(0, 1, 0);
         //var lookAt = new Vector(0, 0, 1);
         var lightCol = [1, 1, 1];
-        var lightPos = new Vector(1, 0, -0.5); //new Vector(-3, 1, -0.5);
+        var lightPos = new Vector(-3, 1, -0.5); //new Vector(-3, 1, -0.5);
     
         //for each screen pixel
         for(var y = 0; y < h; y++) {
