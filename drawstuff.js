@@ -501,7 +501,7 @@ class Vector {
 
 // helper function to find the max of two parameters a and b
 function max(a.b) {
-    if(a > B)
+    if(a > b)
         return a;
     else //(a <= b)
         return b;
