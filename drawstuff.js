@@ -345,6 +345,7 @@ function drawInputTrainglesUsingPaths(context) {
 
 // The following vector class was provided by Dr. Watson in the exercise 3 drawstuff.js
 // The class has been altered to include a static cross product method
+// The class has been altered to include a static vector length method
 // Vector class
 class Vector { 
     constructor(x=0,y=0,z=0) {
@@ -478,11 +479,35 @@ class Vector {
             console.log(e);
             return(new Vector(NaN,NaN,NaN));
         }
-    } // end scale static method
+    } // end normalize static method
+    
+    // static length method
+    static length(v) {
+        try {
+            if (!(v instanceof Vector))
+                throw "Vector.length: parameter not a vector";
+            else {
+                return(Vector.sqrt(v.x*v.x + v.y*v.y + v.z*v.z));
+            }
+        } // end try
+        
+        catch(e) {
+            console.log(e);
+            return(new Vector(NaN,NaN,NaN));
+        }
+    } // end length static method
     
 } // end Vector class
 
-//helper function to aid with ray-triangle intersection tests
+// helper function to find the max of two parameters a and b
+function max(a.b) {
+    if(a > B)
+        return a;
+    else //(a <= b)
+        return b;
+}
+
+// helper function to aid with ray-triangle intersection tests
 function side(N,I,V1,V2) {
     var V1ToI = Vector.subtract(I,V1); // I - V1
     var V1ToV2 = Vector.subtract(V2,V1); // V2 - V1
@@ -497,7 +522,7 @@ function side(N,I,V1,V2) {
     }
 }
 
-//draw unlit triangles using raycasting
+// draw unlit triangles using raycasting
 function rayCasting(context) {
     var inputTriangles = getInputTriangles();
     var w = context.canvas.width;
@@ -592,6 +617,8 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[1]*255,
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
+                            
+                            //color(inputTriangles[f], lightPos, E, N, c);
                         }
                         
                     } // end for triangles
