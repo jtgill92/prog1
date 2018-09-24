@@ -518,7 +518,7 @@ function side(N,I,V1,V2) {
 // alters color c passed by reference
 function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
     var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
-    var L = Vector.subtract(L, I);
+    var L = Vector.subtract(lightPos, I);
     var V = Vector.subtract(E, I);
     var HDenom = Vector.length(L) + Vector.length(V);
     var H = Vector.scale(1/HDenom, Vector.add(L, V));
