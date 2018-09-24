@@ -522,6 +522,38 @@ function side(N,I,V1,V2) {
     }
 }
 
+// find the color of the pixel using Blinn-Phong shadering
+// alters color c passed by reference
+function color(inputTriangle, lightPos, lightCol, I, E, N, c) {
+    var NHat = Vector.normalize(N); //N normalized; the direction of N, or "N hat"
+    var L = Vector.subtract(L, I);
+    var V = Vector.subtract(E, I);
+    var HDenom = Vector.length(L) + Vector.length(V);
+    var H = Vector.scale(1/HDenom, Vector.add(L, V));
+    
+    var NDotL = Vector.dot(NHat, Vector.normalize(L));
+    var NDotH = Vector.dot(NHat, H);
+    
+    var RGB = [0, 0, 0];
+    
+    var n = inputTriangle.material.n;
+    
+    for(var i = 0; i < 3; i++) {
+        var Ka = inputTriangle.material.ambient[i];
+        var La = lightCol[i];
+        
+        var Kd = inputTriangle.material.diffuse[i];
+        var Ld = lightCol[i];
+        
+        var Ks = inputTriangle.material.specular[i];
+        var Ls = lightCol[i];
+        
+        RGB[i] = Ka*La + Kd*Ld*NDotL + Ks*Ls*Math.pow(NDotH, n);
+    }
+    
+    c.change(RGB[0]*255, RGB[1]*255, RGB[2]*255, 255);
+}
+
 // draw unlit triangles using raycasting
 function rayCasting(context) {
     var inputTriangles = getInputTriangles();
@@ -535,6 +567,8 @@ function rayCasting(context) {
         var E = new Vector(0.5, 0.5, -0.5); // eye position
         //var viewUp = new Vector(0, 1, 0);
         //var lookAt = new Vector(0, 0, 1);
+        var lightCol = [1, 1, 1];
+        var lightPos = new Vector(-3, 1, -0.5);
     
         //for each screen pixel
         for(var y = 0; y < h; y++) {
@@ -618,7 +652,7 @@ function rayCasting(context) {
                             inputTriangles[f].material.diffuse[2]*255,
                             255); // triangle diffuse color
                             
-                            //color(inputTriangles[f], lightPos, E, N, c);
+                            //color(inputTriangles[f], lightPos, lightCol, I, E, N, c);
                         }
                         
                     } // end for triangles
