@@ -499,14 +499,6 @@ class Vector {
     
 } // end Vector class
 
-// helper function to find the max of two parameters a and b
-/*function max(a,b) {
-    if(a > b)
-        return a;
-    else //(a <= b)
-        return b;
-}*/
-
 // helper function to aid with ray-triangle intersection tests
 function side(N,I,V1,V2) {
     var V1ToI = Vector.subtract(I,V1); // I - V1
